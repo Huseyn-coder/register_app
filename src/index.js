@@ -1,13 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Home from './Pages/Home';
+import Contact from './Pages/Contact';
+import Layout from './Pages/Layout';
+import Register from './Pages/Register';
+import MelumatlarContext from './Context/MelumatlarContext';
+import AnaSehife from './Pages/AnaSehife';
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: "/contact",
+        element: <Contact />
+      },
+      {
+        path: "/register",
+        element: <Register />
+      },
+      {
+        path: "/anasehife",
+        element: <AnaSehife />
+      }
+    ]
+  }
+])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <MelumatlarContext>
+    <RouterProvider  router={router}/>
+    </MelumatlarContext>
   </React.StrictMode>
 );
 
